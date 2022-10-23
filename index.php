@@ -18,10 +18,9 @@
 
     <h1>Home</h1>
     <hr>
-    <h4>Caio Esqueci o sobrenome</h4>
+    <h4>Caio Lemos</h4>
     <h4>David Renan</h4>
     <h4>Matheus Rocha</h4>
-    <h4>Pedro Corrêa</h4>    
-    
+    <h4>Pedro Correa</h4>
 </body>
 </html>
