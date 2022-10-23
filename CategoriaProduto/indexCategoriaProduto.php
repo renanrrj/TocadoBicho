@@ -20,7 +20,7 @@ array_unshift($listaCatProduto,["catpro_Id" => "","catpro_Nome" => ""]);
 
     <link href="../style.css" rel="stylesheet"></link>
 
-    <script>function updateButtons(select){
+    <script>function updateButtons(select){ // fora de funcionamento
             const btnEnviar = document.getElementById('btnEnviar')
             const btnAtualizar = document.getElementById('btnAtualizar')
             const btnDeletar = document.getElementById('btnDeletar')
@@ -42,6 +42,7 @@ array_unshift($listaCatProduto,["catpro_Id" => "","catpro_Nome" => ""]);
 <body>
     <div class="menu">
         <a class="menu_option" href="/index.php">Home</a>
+        <a class="menu_option" href="/Clinica/indexClinica.php">Clínica</a>
         <a class="menu_option activated" href="">Categoria Produto</a>
     </div>
 
@@ -61,6 +62,7 @@ array_unshift($listaCatProduto,["catpro_Id" => "","catpro_Nome" => ""]);
             ?>
             </select>
 
+        <br>
         <br>
             Nome Categoria Produto:
             <input type="text" name="nomeCatPro" size="20">           
