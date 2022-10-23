@@ -20,12 +20,17 @@ array_unshift($listaCatProduto,["catpro_Id" => "","catpro_Nome" => ""]);
 
     <link href="../style.css" rel="stylesheet"></link>
 
+<<<<<<< HEAD
     <script>function updateButtons(select){ // fora de funcionamento
+=======
+    <script>
+        function updateButtons(select){
+>>>>>>> 908654451d62426f3cf1d15b3397b0c595311ce4
             const btnEnviar = document.getElementById('btnEnviar')
             const btnAtualizar = document.getElementById('btnAtualizar')
             const btnDeletar = document.getElementById('btnDeletar')
 
-            if(select.value == ""){
+            if(select.value != ""){
                 btnEnviar.disabled = true
                 btnAtualizar.disabled = false
                 btnDeletar.disabled = false
@@ -41,9 +46,14 @@ array_unshift($listaCatProduto,["catpro_Id" => "","catpro_Nome" => ""]);
 
 <body>
     <div class="menu">
+<<<<<<< HEAD
         <a class="menu_option" href="/index.php">Home</a>
         <a class="menu_option" href="/Clinica/indexClinica.php">Clínica</a>
+=======
+        <a class="menu_option" href="../index.php">Home</a>
+>>>>>>> 908654451d62426f3cf1d15b3397b0c595311ce4
         <a class="menu_option activated" href="">Categoria Produto</a>
+        <a class="menu_option" href="../Produto/indexProduto.php">Produto</a>
     </div>
 
     <h1>Categoria Produto</h1>
@@ -51,7 +61,7 @@ array_unshift($listaCatProduto,["catpro_Id" => "","catpro_Nome" => ""]);
 
     <form id="form" method="POST" action="insertCategoriaProduto.php" onSubmit="return valida_dados(this)">
         <p>
-            Id Categoria Produto:
+            Categoria de produto:
             <select name="idCatPro" onchange="updateButtons(this)">
             <?php
                 foreach ($listaCatProduto as $tb_categoriaproduto){
@@ -61,24 +71,26 @@ array_unshift($listaCatProduto,["catpro_Id" => "","catpro_Nome" => ""]);
                 }
             ?>
             </select>
+<<<<<<< HEAD
 
         <br>
         <br>
             Nome Categoria Produto:
             <input type="text" name="nomeCatPro" size="20">           
 
+=======
+        </p>
+        <p>
+            Nome:
+            <input type="text" name="nomeCatPro" size="20">    
+>>>>>>> 908654451d62426f3cf1d15b3397b0c595311ce4
         </p>
     </form>
 
  <!-- Botoes -->
     <input id="btnEnviar" type="button" value="Enviar" onclick="document.getElementById('form').action = './insertCategoriaProduto.php'; document.getElementById('form').submit()">
-    <input id="btnDeletar" type="button" value="Deletar" onclick="document.getElementById('form').action = './deleteCategoriaProduto.php'; document.getElementById('form').submit()">
-    <input id="btnAlterar" type="button" value="Alterar" onclick="document.getElementById('form').action = './updateCategoriaProduto.php'; document.getElementById('form').submit()">
+    <input id="btnDeletar" type="button" value="Deletar" onclick="document.getElementById('form').action = './deleteCategoriaProduto.php'; document.getElementById('form').submit()" disabled>
+    <input id="btnAtualizar" type="button" value="Alterar" onclick="document.getElementById('form').action = './updateCategoriaProduto.php'; document.getElementById('form').submit()" disabled>
        
 </body>
 </html>
-
-<br>
-<br>
-<hr>
-# erro ao ativar e desativar teclas de acordo com o select no optionbox 

@@ -23,7 +23,6 @@
     <h4>Caio Lemos</h4>
     <h4>David Renan</h4>
     <h4>Matheus Rocha</h4>
-    <h4>Pedro Corrêa</h4>    
-    
+    <h4>Pedro Correa</h4>
 </body>
 </html>
