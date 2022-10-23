@@ -1,5 +1,6 @@
 <?php
 require_once "../mysql.php";
+session_start();
 
 $sqlCatProduto = "SELECT * FROM tb_categoriaproduto";
 $sqlProduto = "SELECT pro_Id,pro_Nome FROM tb_produto ORDER BY pro_Nome";    #"SELECT catpro_Nome FROM tb_categoriaproduto";
@@ -55,7 +56,7 @@ array_unshift($listaProduto, ["pro_Id" => "", "pro_Nome" => ""]);
     <form id="form" method="POST" action="./insertProduto.php" onSubmit="return valida_dados(this)">
         <p>
             Produto:
-            <select name="idCatPro" onchange="updateButtons(this)">
+            <select name="pro_Id" onchange="updateButtons(this)">
                 <?php
                 foreach ($listaProduto as $tb_produto) {
                 ?>
@@ -67,7 +68,7 @@ array_unshift($listaProduto, ["pro_Id" => "", "pro_Nome" => ""]);
         </p>
         <p>
             Categoria:
-            <select name="idCatPro">
+            <select name="pro_Id_Categoria">
                 <?php
                 foreach ($listaCatProduto as $tb_categoriaproduto) {
                 ?>
@@ -79,24 +80,29 @@ array_unshift($listaProduto, ["pro_Id" => "", "pro_Nome" => ""]);
         </p>
         <p>
             Nome:
-            <input type="text" name="nomeCatPro" size="20">
+            <input type="text" name="pro_Nome" size="20">
         </p>
         <p>
             Preço:
-            <input type="number" name="nomeCatPro" size="20">
+            <input type="number" name="pro_Preco" size="20">
         </p>
     </form>
 
     <!-- Botoes -->
-    <input id="btnEnviar" type="button" value="Enviar" onclick="document.getElementById('form').action = './insertCategoriaProduto.php'; document.getElementById('form').submit()">
-    <input id="btnDeletar" type="button" value="Deletar" onclick="document.getElementById('form').action = './deleteCategoriaProduto.php'; document.getElementById('form').submit()" disabled>
-    <input id="btnAtualizar" type="button" value="Alterar" onclick="document.getElementById('form').action = './updateCategoriaProduto.php'; document.getElementById('form').submit()" disabled>
+    <input id="btnEnviar" type="button" value="Enviar" onclick="document.getElementById('form').action = './insertProduto.php'; document.getElementById('form').submit()">
+    <input id="btnDeletar" type="button" value="Deletar" onclick="document.getElementById('form').action = './deleteProduto.php'; document.getElementById('form').submit()" disabled>
+    <input id="btnAtualizar" type="button" value="Alterar" onclick="document.getElementById('form').action = './updateProduto.php'; document.getElementById('form').submit()" disabled>
 
+    <!-- Mensagem de erro ou sucesso -->
+    <?php
+        $situacao = isset($_SESSION['situacao']) ? $_SESSION['situacao'] : "";
+
+        if($situacao == 1){
+            echo "<p style='color: green; font-weight: bold'>Inserido com sucesso</p>";
+        }else{
+            echo "<p style='color: red; font-weight: bold'>$situacao</p>";
+        }
+    ?>
 </body>
 
 </html>
-
-<br>
-<br>
-<hr>
-# erro ao ativar e desativar teclas de acordo com o select no optionbox

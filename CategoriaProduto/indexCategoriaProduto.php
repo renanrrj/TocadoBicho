@@ -64,7 +64,7 @@ array_unshift($listaCatProduto,["catpro_Id" => "","catpro_Nome" => ""]);
             </select>
         </p>
         <p>
-            Nome Categoria Produto:
+            Nome:
             <input type="text" name="nomeCatPro" size="20">    
         </p>
     </form>
@@ -72,12 +72,7 @@ array_unshift($listaCatProduto,["catpro_Id" => "","catpro_Nome" => ""]);
  <!-- Botoes -->
     <input id="btnEnviar" type="button" value="Enviar" onclick="document.getElementById('form').action = './insertCategoriaProduto.php'; document.getElementById('form').submit()">
     <input id="btnDeletar" type="button" value="Deletar" onclick="document.getElementById('form').action = './deleteCategoriaProduto.php'; document.getElementById('form').submit()" disabled>
-    <input id="btnAlterar" type="button" value="Alterar" onclick="document.getElementById('form').action = './updateCategoriaProduto.php'; document.getElementById('form').submit()" disabled>
+    <input id="btnAtualizar" type="button" value="Alterar" onclick="document.getElementById('form').action = './updateCategoriaProduto.php'; document.getElementById('form').submit()" disabled>
        
 </body>
 </html>
-
-<br>
-<br>
-<hr>
-# erro ao ativar e desativar teclas de acordo com o select no optionbox 
