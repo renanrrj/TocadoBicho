@@ -20,12 +20,8 @@ array_unshift($listaCatProduto,["catpro_Id" => "","catpro_Nome" => ""]);
 
     <link href="../style.css" rel="stylesheet"></link>
 
-<<<<<<< HEAD
-    <script>function updateButtons(select){ // fora de funcionamento
-=======
     <script>
         function updateButtons(select){
->>>>>>> 908654451d62426f3cf1d15b3397b0c595311ce4
             const btnEnviar = document.getElementById('btnEnviar')
             const btnAtualizar = document.getElementById('btnAtualizar')
             const btnDeletar = document.getElementById('btnDeletar')
