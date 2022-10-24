@@ -6,6 +6,7 @@ $listaClinica = selectRegistros($sqlClinica);
 
 array_unshift($listaClinica,["clin_Id" => "","clin_Nome" => ""]);
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -19,9 +20,11 @@ array_unshift($listaClinica,["clin_Id" => "","clin_Nome" => ""]);
 </head>
 <body>
     <div class="menu">
-        <a class="menu_option" href="/index.php">Home</a>
-        <a class="menu_option activated" href="">Clínica</a>
+    <a class="menu_option" href="/index.php">Home</a>
+        <a class="menu_option activated" href="../Clinica/indexClinica.php">Clínica</a>
+        <a class="menu_option" href="../AnimalDoacao/indexAnimalDoacao.php">Animal Doação</a>
         <a class="menu_option" href="../CategoriaProduto/indexCategoriaProduto.php">Categoria Produto</a>
+        <a class="menu_option" href="../Produto/indexProduto.php">Produto</a>
     </div>
 
     <h1>Clínica</h1>
@@ -46,7 +49,7 @@ array_unshift($listaClinica,["clin_Id" => "","clin_Nome" => ""]);
         <br>
         <br>
             Telefone Clínica:
-            <input type="text" name="telClin" size="20">
+            <input type="tel" name="telClin" size="20">
         <br>
         <br>
             Endereço Clínica:

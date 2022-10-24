@@ -42,12 +42,10 @@ array_unshift($listaCatProduto,["catpro_Id" => "","catpro_Nome" => ""]);
 
 <body>
     <div class="menu">
-<<<<<<< HEAD
+
         <a class="menu_option" href="/index.php">Home</a>
         <a class="menu_option" href="/Clinica/indexClinica.php">Clínica</a>
-=======
-        <a class="menu_option" href="../index.php">Home</a>
->>>>>>> 908654451d62426f3cf1d15b3397b0c595311ce4
+        <a class="menu_option" href="/AnimalDoacao/indexAnimalDoacao.php">Animal Doação</a>
         <a class="menu_option activated" href="">Categoria Produto</a>
         <a class="menu_option" href="../Produto/indexProduto.php">Produto</a>
     </div>
@@ -67,19 +65,13 @@ array_unshift($listaCatProduto,["catpro_Id" => "","catpro_Nome" => ""]);
                 }
             ?>
             </select>
-<<<<<<< HEAD
+
 
         <br>
         <br>
             Nome Categoria Produto:
             <input type="text" name="nomeCatPro" size="20">           
 
-=======
-        </p>
-        <p>
-            Nome:
-            <input type="text" name="nomeCatPro" size="20">    
->>>>>>> 908654451d62426f3cf1d15b3397b0c595311ce4
         </p>
     </form>
 

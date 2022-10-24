@@ -45,9 +45,11 @@ array_unshift($listaProduto, ["pro_Id" => "", "pro_Nome" => ""]);
 
 <body>
     <div class="menu">
-        <a class="menu_option" href="../index.php">Home</a>
-        <a class="menu_option" href="../CategoriaProduto/indexCategoriaProduto.php">Categoria Produto</a>
-        <a class="menu_option activated" href="">Produto</a>
+    <a class="menu_option" href="/index.php">Home</a>
+        <a class="menu_option" href="/Clinica/indexClinica.php">Clínica</a>
+        <a class="menu_option" href="/AnimalDoacao/indexAnimalDoacao.php">Animal Doação</a>
+        <a class="menu_option" href="/CategoriaProduto/indexCategoriaProduto.php">Categoria Produto</a>
+        <a class="menu_option activated" href="../Produto/indexProduto.php">Produto</a>
     </div>
 
     <h1>Produto</h1>

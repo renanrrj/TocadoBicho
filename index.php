@@ -11,9 +11,11 @@
 </head>
 <body>
     <div class="menu">
-        <a class="menu_option activated" href="">Home</a>
-        <a class="menu_option" href="./Clinica/indexClinica.php">Clínica</a>
-        <a class="menu_option" href="./CategoriaProduto/indexCategoriaProduto.php">Categoria Produto</a>
+    <a class="menu_option activated" href="">Home</a>
+        <a class="menu_option" href="../Clinica/indexClinica.php">Clínica</a>
+        <a class="menu_option" href="../AnimalDoacao/indexAnimalDoacao.php">Animal Doação</a>
+        <a class="menu_option" href="../CategoriaProduto/indexCategoriaProduto.php">Categoria Produto</a>
+        <a class="menu_option" href="../Produto/indexProduto.php">Produto</a>        
         
         
     </div>
