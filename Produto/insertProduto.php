@@ -3,15 +3,24 @@ require_once "../mysql.php";
 session_start();
 
 $pro_Id_Categoria = $_POST['pro_Id_Categoria'];
-$pro_Nome = $_POST['pro_Nome'];
+// $pro_Nome = $_POST['pro_Nome'];
 $pro_Preco = $_POST['pro_Preco'];
+// $pro_Detalhe = $_POST['pro_Detalhe'];
+$validado = true;
+$erro = "";
+
+echo "pro_Nome: $pro_Nome";
+echo "pro_Detalhe: $pro_Detalhe";
+
+//* Verifica já existe na tabela o nome digitado, não deve existir
+if(empty($pro_Nome) || empty($pro_Preco)){
+    $validado = false;
+    $erro = "Não foi possível INSERIR, existem campos em branco<br>";
+}
 
 //* Verifica já existe na tabela o nome digitado, não deve existir
 $sqlNomeProduto = "SELECT * FROM tb_produto where pro_Nome = '$pro_Nome'";
 $listaNomeProduto = selectRegistros($sqlNomeProduto);
-
-$validado = true;
-$erro = "";
 
 if ($listaNomeProduto != []) {
     $validado = false;
@@ -49,13 +58,15 @@ if ($validado) {
         }
     }
 
-    $sqlInPro = "INSERT INTO `tb_produto`(pro_Id, pro_Id_Categoria, pro_Nome, pro_Preco) VALUES ($idPro, $pro_Id_Categoria, '$pro_Nome', $pro_Preco)";
+    $sqlInPro = "INSERT INTO `tb_produto`(pro_Id, pro_Id_Categoria, pro_Nome, pro_Preco, pro_Detalhe) VALUES ($idPro, $pro_Id_Categoria, '$pro_Nome', $pro_Preco, '$pro_Detalhe')";
     $resultado = insereRegistro($sqlInPro);
 
     $_SESSION['situacao'] = $resultado;
+    $_SESSION['acao'] = 'Inserção';
 
     header('Location: ./indexProduto.php');
 } else {
     $_SESSION['situacao'] = $erro;
     header('Location: ./indexProduto.php');
 }
+?>

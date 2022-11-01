@@ -112,11 +112,35 @@ function updateRegistro($update)
     return $rows;
 }
 
+function arrayToString ($dados){
+    $stringDados = "";
 
+    foreach($dados as $kDados => $vDados) {
+        if($kDados != 0){
+            $stringDados = $stringDados."/";
+        }
+
+        $keys = array_keys($vDados);
+
+        foreach($vDados as $kDado => $vDado){
+            if($keys[0] != $kDado){
+                $stringDados = $stringDados.";";
+            }
+
+            $kDado = utf8_encode($kDado);
+            $vDado = utf8_encode($vDado);
+
+            $stringDados = $stringDados."$kDado:'$vDado'";
+        }
+    }
+
+    return $stringDados;
+}
 //testaConexao();
 //insereRegistro("insert into aluno(nmaluno) values('teste de insert2')");
 //var_dump(selectRegistros('SELECT * FROM ALUNO'));
 //deleteRegistro('delete from aluno where idaluno = 4');
 //updateRegistro('update aluno set nmaluno="teste" where idaluno = 3');
+
 
 ?>

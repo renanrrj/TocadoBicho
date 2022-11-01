@@ -1,27 +1,31 @@
 <?php
 require_once '../mysql.php';
+session_start();
 
-$idCatProduto = $_POST['idCatPro'];
+$pro_Id = $_POST['pro_Id'];
 $validado = true;
+$erro = "";
 
-$listaCatPro = [];
+//* Verifica se o produto selecionado para edição realmente existe na tabela
+$sqlIdProduto = "SELECT * FROM tb_produto where pro_Id = $pro_Id";
+$listaIdProduto = selectRegistros($sqlIdProduto);
 
-# Conferencia: se diferente de numerico validado se torna falso
-if(!is_numeric($idCatProduto)){
+if ($listaIdProduto == []) {
     $validado = false;
-}else{
-    $sqlIdCatPro = "SELECT * FROM tb_categoriaproduto WHERE catpro_Id = $idCatProduto";
-    $listaCatPro = selectRegistros($sqlIdCatPro);
+    $erro = $erro.'Não foi possível DELETAR, o registro não foi encontrado<br>';
 }
 
-# Verifica se há matéria com esse Id para poder deleta-la
-if($listaCatPro=[]){
-    $validado = false;
-    echo "Deleção NÃO permitida, Id não encontrado";
-}
-if($validado){
-    $sqlDelMateria = "DELETE FROM `tb_categoriaproduto` WHERE `catpro_Id` = $idCatProduto";
-    $resultado = deleteRegistro($sqlDelMateria);
-}
+//* Deletando o Dado
+if ($validado) {
+    $sqlUpPro = "DELETE FROM `tb_produto` WHERE `pro_Id` = $pro_Id";
+    $resultado = deleteRegistro($sqlUpPro);
 
+    $_SESSION['situacao'] = $resultado;
+    $_SESSION['acao'] = 'Deleção';
+
+    header('Location: ./indexProduto.php');
+} else {
+    $_SESSION['situacao'] = $erro;
+    header('Location: ./indexProduto.php');
+}
 ?>
