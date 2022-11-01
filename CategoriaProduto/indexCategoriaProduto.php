@@ -6,6 +6,7 @@ $sqlCatProduto = "SELECT * FROM tb_categoriaproduto ORDER BY catpro_Nome";    #"
 
 $listaIdCatProduto = selectRegistros($sqlIdCatProduto);
 $listaCatProduto = selectRegistros($sqlCatProduto);
+$str_listaProduto = arrayToString($listaCatProduto);
 
 array_unshift($listaCatProduto,["catpro_Id" => "","catpro_Nome" => ""]);
 ?>
@@ -19,28 +20,12 @@ array_unshift($listaCatProduto,["catpro_Id" => "","catpro_Nome" => ""]);
     <title>Categoria Produto</title>
 
     <link href="../style.css" rel="stylesheet"></link>
-
-    <script>
-        function updateButtons(select){
-            const btnEnviar = document.getElementById('btnEnviar')
-            const btnAtualizar = document.getElementById('btnAtualizar')
-            const btnDeletar = document.getElementById('btnDeletar')
-
-            if(select.value != ""){
-                btnEnviar.disabled = true
-                btnAtualizar.disabled = false
-                btnDeletar.disabled = false
-            }else{
-                btnEnviar.disabled = false
-                btnAtualizar.disabled = true
-                btnDeletar.disabled = true
-            }
-        }
-    </script>
-
+    <script src="./controleCategoriaProduto.js"></script>
 </head>
 
 <body>
+    <p id="dadosString" style="max-height:0px; font-size:0px"><?php echo $str_listaProduto ?></p>
+
     <div class="menu">
 
         <a class="menu_option" href="/index.php">Home</a>
@@ -56,7 +41,7 @@ array_unshift($listaCatProduto,["catpro_Id" => "","catpro_Nome" => ""]);
     <form id="form" method="POST" action="insertCategoriaProduto.php" onSubmit="return valida_dados(this)">
         <p>
             Categoria de produto:
-            <select name="idCatPro" onchange="updateButtons(this)">
+            <select id="catpro_Id" name="idCatPro" onchange="updateButtons(this)">
             <?php
                 foreach ($listaCatProduto as $tb_categoriaproduto){
             ?>
@@ -70,7 +55,7 @@ array_unshift($listaCatProduto,["catpro_Id" => "","catpro_Nome" => ""]);
         <br>
         <br>
             Nome Categoria Produto:
-            <input type="text" name="nomeCatPro" size="20">           
+            <input id="catpro_Nome" type="text" name="nomeCatPro" size="20">           
 
         </p>
     </form>

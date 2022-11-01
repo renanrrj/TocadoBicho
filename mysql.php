@@ -127,8 +127,8 @@ function arrayToString ($dados){
                 $stringDados = $stringDados.";";
             }
 
-            $kDado = utf8_encode($kDado);
-            $vDado = utf8_encode($vDado);
+            $kDado = $kDado;
+            $vDado = $vDado;
 
             $stringDados = $stringDados."$kDado:'$vDado'";
         }

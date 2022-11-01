@@ -45,6 +45,4 @@ function preencherCampos(id){
     pro_Preco.value = reg_selecionado.find(it => it.split(':')[0] == 'pro_Preco').split(':')[1].replaceAll("'","")
     pro_Id_Categoria.value = reg_selecionado.find(it => it.split(':')[0] == 'pro_Id_Categoria').split(':')[1].replaceAll("'","")
     pro_Detalhe.value = reg_selecionado.find(it => it.split(':')[0] == 'pro_Detalhe').split(':')[1].replaceAll("'","")
-
-    //';:/ não pode ser nome de tabela
 }

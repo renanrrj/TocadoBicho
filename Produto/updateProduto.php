@@ -6,13 +6,21 @@ $pro_Id = $_POST['pro_Id'];
 $pro_Id_Categoria = $_POST['pro_Id_Categoria'];
 $pro_Nome = $_POST['pro_Nome'];
 $pro_Preco = $_POST['pro_Preco'];
+$pro_Detalhe = $_POST['pro_Detalhe'];
 $validado = true;
 $erro = "";
 
 //* Verifica já existe na tabela o nome digitado, não deve existir
-if(empty($pro_Nome) || empty($pro_Preco)){
+if(empty($pro_Id) || empty($pro_Id_Categoria) || empty($pro_Nome) || empty($pro_Preco) || empty($pro_Detalhe)){
     $validado = false;
     $erro = "Não foi possível ALTERAR, existem campos em branco<br>";
+}
+
+//* Verifica se algum dos campos contém os caracteres ';:/"
+$uniao = $pro_Id.$pro_Id_Categoria.$pro_Nome.$pro_Preco.$pro_Detalhe;
+if(strpos($uniao,"'") || strpos($uniao,";") || strpos($uniao,":") || strpos($uniao,"/") || strpos($uniao,'"')){
+    $validado = false;
+    $erro = $erro."Não foi possível ALTERAR, não são permitidos os caracteres ';:/".'"'."<br>";
 }
 
 //* Verifica se o produto selecionado para edição realmente existe na tabela
@@ -48,14 +56,16 @@ if (!is_numeric($pro_Preco) || $pro_Preco < 1){
     $erro = $erro.'Não foi possível ALTERAR, o preço não pode ser negativo, nem zero e deve ser um número<br>';
 }
 
+//echo "erro: ".var_dump($erro);
 //* Alterando o Dado
 if ($validado) {
-    $sqlUpPro = "UPDATE `tb_produto` SET `pro_Id_Categoria` = $pro_Id_Categoria, `pro_Nome` = '$pro_Nome', `pro_Preco` = $pro_Preco WHERE `pro_Id` = $pro_Id";
+    $sqlUpPro = "UPDATE `tb_produto` SET `pro_Id_Categoria` = $pro_Id_Categoria, `pro_Nome` = '$pro_Nome', `pro_Preco` = $pro_Preco, `pro_Detalhe` = '$pro_Detalhe' WHERE `pro_Id` = $pro_Id";
     $resultado = updateRegistro($sqlUpPro);
 
     $_SESSION['situacao'] = $resultado;
     $_SESSION['acao'] = 'Alteração';
 
+    echo "Passou: $resultado";
     header('Location: ./indexProduto.php');
 } else {
     $_SESSION['situacao'] = $erro;

@@ -7,6 +7,7 @@ $sqlProduto = "SELECT * FROM tb_produto ORDER BY pro_Nome";   #"SELECT catpro_No
 
 $listaCatProduto = selectRegistros($sqlCatProduto);
 $listaProduto = selectRegistros($sqlProduto);
+
 $str_listaProduto = arrayToString($listaProduto);
 
 array_unshift($listaProduto, ["pro_Id" => "", "pro_Nome" => "","pro_Preco"=>"","pro_Id_Categoria"=>1,"pro_Detalhe"=>""]);
@@ -47,7 +48,7 @@ array_unshift($listaProduto, ["pro_Id" => "", "pro_Nome" => "","pro_Preco"=>"","
                 <?php
                 foreach ($listaProduto as $tb_produto) {
                 ?>
-                    <option value="<?php echo $tb_produto['pro_Id'] ?>"><?php echo ucfirst(strtolower($tb_produto['pro_Nome'])) ?></option>
+                    <option value="<?php echo $tb_produto['pro_Id'] ?>"><?php echo $tb_produto['pro_Nome'] ?></option>
                 <?php
                 }
                 ?>
@@ -59,7 +60,7 @@ array_unshift($listaProduto, ["pro_Id" => "", "pro_Nome" => "","pro_Preco"=>"","
                 <?php
                 foreach ($listaCatProduto as $tb_categoriaproduto) {
                 ?>
-                    <option value="<?php echo $tb_categoriaproduto['catpro_Id'] ?>"><?php echo ucfirst(strtolower($tb_categoriaproduto['catpro_Nome'])) ?></option>
+                    <option value="<?php echo $tb_categoriaproduto['catpro_Id'] ?>"><?php echo $tb_categoriaproduto['catpro_Nome'] ?></option>
                 <?php
                 }
                 ?>
