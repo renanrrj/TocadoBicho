@@ -2,8 +2,8 @@
 require_once "../mysql.php";
 session_start();
 
-$sqlCatProduto = "SELECT * FROM tb_categoriaproduto";
-$sqlProduto = "SELECT * FROM tb_produto ORDER BY pro_Nome";   #"SELECT catpro_Nome FROM tb_categoriaproduto";
+$sqlCatProduto = "SELECT * FROM tb_categoriaproduto ORDER BY catpro_Nome";
+$sqlProduto = "SELECT * FROM tb_produto ORDER BY pro_Nome";
 
 $listaCatProduto = selectRegistros($sqlCatProduto);
 $listaProduto = selectRegistros($sqlProduto);
@@ -32,13 +32,14 @@ array_unshift($listaProduto, ["pro_Id" => "", "pro_Nome" => "","pro_Preco"=>"","
 
     <div class="menu">
     <a class="menu_option" href="../index.php">Home</a>
-        <a class="menu_option" href="../Clinica/indexClinica.php">Clínica</a>
-        <a class="menu_option" href="../AnimalDoacao/indexAnimalDoacao.php">Animal Doação</a>
-        <a class="menu_option" href="../CategoriaProduto/indexCategoriaProduto.php">Categoria Produto</a>
-        <a class="menu_option activated" href="../Produto/indexProduto.php">Produto</a>
+        <a class="menu_option" href="../Clinica/indexClinica.php">Clínicas</a>
+        <a class="menu_option" href="../AnimalDoacao/indexAnimalDoacao.php">Animais para doação</a>
+        <a class="menu_option" href="../CategoriaProduto/indexCategoriaProduto.php">Categorias de produto</a>
+        <a class="menu_option activated">Produtos</a>
+        <a class="menu_option" href="../FormasPagamento/indexFormaPagamento.php">Formas de pagamento</a>
     </div>
 
-    <h1>Produto</h1>
+    <h1>Produtos</h1>
     <hr>
 
     <form id="form" method="POST" action="./insertProduto.php">

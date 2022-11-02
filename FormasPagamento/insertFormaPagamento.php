@@ -2,27 +2,22 @@
 require_once "../mysql.php";
 session_start();
 
-$pro_Id_Categoria = $_POST['pro_Id_Categoria'];
-$pro_Nome = $_POST['pro_Nome'];
-$pro_Preco = $_POST['pro_Preco'];
-$pro_Detalhe = $_POST['pro_Detalhe'];
+$fp_Nome = $_POST['pro_Nome'];
+$fp_Parcelavel = $_POST['pro_Id_Categoria'];
 $validado = true;
 $erro = "";
 
-echo "pro_Nome: $pro_Nome";
-echo "pro_Detalhe: $pro_Detalhe";
-
 //* Verifica se existe algum campo obrigatório vazio
-if(empty($pro_Id_Categoria) || empty($pro_Nome) || empty($pro_Preco) || empty($pro_Detalhe)){
+if(empty($fp_Nome) || empty($fp_Parcelavel)){
     $validado = false;
     $erro = "Não foi possível INSERIR, existem campos obrigatórios em branco<br>";
 }
 
 //* Verifica se algum dos campos contém os caracteres ';:/"
-$uniao = $pro_Id_Categoria.$pro_Nome.$pro_Preco.$pro_Detalhe;
+$uniao = $fp_Nome.$fp_Parcelavel;
 if(strpos($uniao,"'") || strpos($uniao,";") || strpos($uniao,":") || strpos($uniao,"/") || strpos($uniao,'"')){
     $validado = false;
-    $erro = $erro."Não foi possível INSERIR, não são permitidos os caracteres ';:/".'"'."<br>";
+    $erro = $erro."Não foi possível INSERIR, não são permitidos os caracteres';:/".'"'."<br>";
 }
 
 //* Verifica já existe na tabela o nome digitado, não deve existir
