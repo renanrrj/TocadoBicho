@@ -58,9 +58,9 @@ array_unshift($listaFormaPagamento, ["fp_Id" => "", "fp_Nome" => "","fp_Parcelav
         </p>
         <p>
             Parcelável:
-            <input id="fp_Parcelavel" type="radio" name="fp_Parcelavel" size="20" value="true">
+            <input id="fp_Parcelavel_1" type="radio" name="fp_Parcelavel" size="20" value="True">
             Sim
-            <input id="fp_Parcelavel" type="radio" name="fp_Parcelavel" size="20" value="false">
+            <input id="fp_Parcelavel_0" type="radio" name="fp_Parcelavel" size="20" value="False" checked>
             Não
         </p>
     </form>

@@ -17,8 +17,8 @@ if ($listaIdProduto == []) {
 
 //* Deletando o Dado
 if ($validado) {
-    $sqlUpPro = "DELETE FROM `tb_produto` WHERE `pro_Id` = $pro_Id";
-    $resultado = deleteRegistro($sqlUpPro);
+    $sqlDelPro = "DELETE FROM `tb_produto` WHERE `pro_Id` = $pro_Id";
+    $resultado = deleteRegistro($sqlDelPro);
 
     $_SESSION['situacao'] = $resultado;
     $_SESSION['acao'] = 'Deleção';

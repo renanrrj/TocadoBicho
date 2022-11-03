@@ -2,10 +2,9 @@ function updateButtons(select) {
     const btnEnviar = document.getElementById('btnEnviar')
     const btnAtualizar = document.getElementById('btnAtualizar')
     const btnDeletar = document.getElementById('btnDeletar')
-    const pro_Id_Categoria = document.getElementById('pro_Id_Categoria')
-    const pro_Nome = document.getElementById('pro_Nome')
-    const pro_Preco = document.getElementById('pro_Preco')
-    const pro_Detalhe = document.getElementById('pro_Detalhe')
+    const fp_Nome = document.getElementById('fp_Nome')
+    const fp_Parcelavel_1 = document.getElementById('fp_Parcelavel_1')
+    const fp_Parcelavel_0 = document.getElementById('fp_Parcelavel_0')
 
     if (select.value != "") {
         btnEnviar.disabled = true
@@ -18,31 +17,32 @@ function updateButtons(select) {
         btnAtualizar.disabled = true
         btnDeletar.disabled = true
 
-        pro_Id_Categoria.value = 1
-        pro_Nome.value = ""
-        pro_Preco.value = ""
-        pro_Detalhe.value = ""
+        fp_Nome.value = ""
+        fp_Parcelavel_1.checked = false
+        fp_Parcelavel_0.checked = true
     }
 }
 
 function preencherCampos(id){
     let dadosString = document.getElementById('dadosString').innerText
     let dadosArray = []
-    const pro_Nome = document.getElementById('pro_Nome')
-    const pro_Preco = document.getElementById('pro_Preco')
-    const pro_Id_Categoria = document.getElementById('pro_Id_Categoria') 
-    const pro_Detalhe = document.getElementById('pro_Detalhe') 
 
     dadosString.split('/').forEach(function(dado){
         dadosArray.push(dado.split(';'))
     })
 
-    let reg_selecionado = dadosArray.find(it => it.includes(`pro_Id:'${id}'`))
+    let reg_selecionado = dadosArray.find(it => it.includes(`fp_Id:'${id}'`))
 
     console.log(reg_selecionado)
 
-    pro_Nome.value = reg_selecionado.find(it => it.split(':')[0] == 'pro_Nome').split(':')[1].replaceAll("'","")
-    pro_Preco.value = reg_selecionado.find(it => it.split(':')[0] == 'pro_Preco').split(':')[1].replaceAll("'","")
-    pro_Id_Categoria.value = reg_selecionado.find(it => it.split(':')[0] == 'pro_Id_Categoria').split(':')[1].replaceAll("'","")
-    pro_Detalhe.value = reg_selecionado.find(it => it.split(':')[0] == 'pro_Detalhe').split(':')[1].replaceAll("'","")
+    fp_Nome.value = reg_selecionado.find(it => it.split(':')[0] == 'fp_Nome').split(':')[1].replaceAll("'","")
+    let fp_Parcelavel_value = reg_selecionado.find(it => it.split(':')[0] == 'fp_Parcelavel').split(':')[1].replaceAll("'","")
+    
+    if(fp_Parcelavel_value == 1){
+        fp_Parcelavel_0.checked = false
+        fp_Parcelavel_1.checked = true
+    }else{
+        fp_Parcelavel_0.checked = true
+        fp_Parcelavel_1.checked = false
+    }
 }

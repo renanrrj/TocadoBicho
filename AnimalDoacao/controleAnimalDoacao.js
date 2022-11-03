@@ -2,6 +2,12 @@ function updateButtons(select){
     const btnEnviar = document.getElementById('btnEnviar')
     const btnAtualizar = document.getElementById('btnAtualizar')
     const btnDeletar = document.getElementById('btnDeletar')
+    const ani_Nome = document.getElementById('ani_Nome')
+    const ani_Raca = document.getElementById('ani_Raca')
+    const ani_Peso = document.getElementById('ani_Peso')
+    const ani_Altura = document.getElementById('ani_Altura')
+    const ani_Endereco = document.getElementById('ani_Endereco')
+    const ani_Idade = document.getElementById('ani_Idade')
 
     if(select.value != ""){
         btnEnviar.disabled = true
@@ -13,18 +19,19 @@ function updateButtons(select){
         btnEnviar.disabled = false
         btnAtualizar.disabled = true
         btnDeletar.disabled = true
+
+        ani_Nome.value = "" 
+        ani_Raca.value = "" 
+        ani_Peso.value = "" 
+        ani_Altura.value = "" 
+        ani_Endereco.value = "" 
+        ani_Idade.value = "" 
     }
 }
 
 function preencherCampos(id){
     let dadosString = document.getElementById('dadosString').innerText
     let dadosArray = []
-    const ani_Nome = document.getElementById('ani_Nome')
-    const ani_Raca = document.getElementById('ani_Raca')
-    const ani_Peso = document.getElementById('ani_Peso')
-    const ani_Altura = document.getElementById('ani_Altura')
-    const ani_Endereco = document.getElementById('ani_Endereco')
-    const ani_Idade = document.getElementById('ani_Idade')
 
     dadosString.split('/').forEach(function(dado){
         dadosArray.push(dado.split(';'))

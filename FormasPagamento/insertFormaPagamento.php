@@ -2,8 +2,8 @@
 require_once "../mysql.php";
 session_start();
 
-$fp_Nome = $_POST['pro_Nome'];
-$fp_Parcelavel = $_POST['pro_Id_Categoria'];
+$fp_Nome = $_POST['fp_Nome'];
+$fp_Parcelavel = $_POST['fp_Parcelavel'];
 $validado = true;
 $erro = "";
 
@@ -21,54 +21,39 @@ if(strpos($uniao,"'") || strpos($uniao,";") || strpos($uniao,":") || strpos($uni
 }
 
 //* Verifica já existe na tabela o nome digitado, não deve existir
-$sqlNomeProduto = "SELECT * FROM tb_produto where pro_Nome = '$pro_Nome'";
-$listaNomeProduto = selectRegistros($sqlNomeProduto);
+$sqlNomeFormaPagamento = "SELECT * FROM tb_formapagamento where fp_Nome = '$fp_Nome'";
+$listaNomeFormaPagamento = selectRegistros($sqlNomeFormaPagamento);
 
-if ($listaNomeProduto != []) {
+if ($listaNomeFormaPagamento != []) {
     $validado = false;
     $erro = $erro.'Não foi possível INSERIR, o nome passado já está em uso<br>';
-}
-
-//* Verifica se a categoria de produto escolhida existe atualmente, deve existir
-$sqlCatProduto = "SELECT * FROM tb_categoriaproduto where catpro_Id = $pro_Id_Categoria";
-$listaCatProduto = selectRegistros($sqlCatProduto);
-
-if ($listaCatProduto == []) {
-    $validado = false;
-    $erro = $erro.'Não foi possível INSERIR, a categoria escolhida não existe mais, atualize a página e tente novamente<br>';
-}
-
-//* Verifica se o preço digitado é válido
-if (!is_numeric($pro_Preco) || $pro_Preco < 1){
-    $validado = false;
-    $erro = $erro.'Não foi possível INSERIR, o preço não pode ser negativo, nem zero e deve ser um número<br>';
 }
 
 //* Inserindo o Dado
 if ($validado) {
     //* Geração de ID
-    $idPro = 1;
-    $idProLivre = false;
-    while ($idProLivre == false) {
-        $sqlIdProduto = "SELECT pro_Id FROM tb_produto WHERE pro_Id = $idPro";
-        $listaIdProduto = selectRegistros($sqlIdProduto);
+    $idFp = 1;
+    $idFpLivre = false;
+    while ($idFpLivre == false) {
+        $sqlIdFormaPagamento = "SELECT fp_Id FROM tb_formapagamento WHERE fp_Id = $idFp";
+        $listaIdFormaPagamento = selectRegistros($sqlIdFormaPagamento);
 
-        if ($listaIdProduto == []) {
-            $idProLivre = true;
+        if ($listaIdFormaPagamento == []) {
+            $idFpLivre = true;
         } else {
-            $idPro++;
+            $idFp++;
         }
     }
 
-    $sqlInPro = "INSERT INTO `tb_produto`(pro_Id, pro_Id_Categoria, pro_Nome, pro_Preco, pro_Detalhe) VALUES ($idPro, $pro_Id_Categoria, '$pro_Nome', $pro_Preco, '$pro_Detalhe')";
-    $resultado = insereRegistro($sqlInPro);
+    $sqlInFp = "INSERT INTO `tb_formapagamento`(fp_Id, fp_Nome, fp_Parcelavel) VALUES ($idFp, '$fp_Nome', $fp_Parcelavel)";
+    $resultado = insereRegistro($sqlInFp);
 
     $_SESSION['situacao'] = $resultado;
     $_SESSION['acao'] = 'Inserção';
 
-    // header('Location: ./indexProduto.php');
+    header('Location: ./indexFormaPagamento.php');
 } else {
     $_SESSION['situacao'] = $erro;
-    // header('Location: ./indexProduto.php');
+    header('Location: ./indexFormaPagamento.php');
 }
 ?>

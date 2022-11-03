@@ -2,6 +2,7 @@ function updateButtons(select){
     const btnEnviar = document.getElementById('btnEnviar')
     const btnAtualizar = document.getElementById('btnAtualizar')
     const btnDeletar = document.getElementById('btnDeletar')
+    const catpro_Nome = document.getElementById('catpro_Nome')
 
     if(select.value != ""){
         btnEnviar.disabled = true
@@ -13,13 +14,14 @@ function updateButtons(select){
         btnEnviar.disabled = false
         btnAtualizar.disabled = true
         btnDeletar.disabled = true
+
+        catpro_Nome.value = ""
     }
 }
 
 function preencherCampos(id){
     let dadosString = document.getElementById('dadosString').innerText
     let dadosArray = []
-    const catpro_Nome = document.getElementById('catpro_Nome')
 
     dadosString.split('/').forEach(function(dado){
         dadosArray.push(dado.split(';'))

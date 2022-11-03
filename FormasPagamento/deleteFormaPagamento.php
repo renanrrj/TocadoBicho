@@ -2,30 +2,30 @@
 require_once '../mysql.php';
 session_start();
 
-$pro_Id = $_POST['pro_Id'];
+$fp_Id = $_POST['fp_Id'];
 $validado = true;
 $erro = "";
 
 //* Verifica se o produto selecionado para edição realmente existe na tabela
-$sqlIdProduto = "SELECT * FROM tb_produto where pro_Id = $pro_Id";
-$listaIdProduto = selectRegistros($sqlIdProduto);
+$sqlIdFormaPagamento = "SELECT * FROM tb_formapagamento where fp_Id = $fp_Id";
+$listaIdFormaPagamento = selectRegistros($sqlIdFormaPagamento);
 
-if ($listaIdProduto == []) {
+if ($listaIdFormaPagamento == []) {
     $validado = false;
     $erro = $erro.'Não foi possível DELETAR, o registro não foi encontrado<br>';
 }
 
 //* Deletando o Dado
 if ($validado) {
-    $sqlUpPro = "DELETE FROM `tb_produto` WHERE `pro_Id` = $pro_Id";
-    $resultado = deleteRegistro($sqlUpPro);
+    $sqlDelPro = "DELETE FROM `tb_formapagamento` WHERE `fp_Id` = $fp_Id";
+    $resultado = deleteRegistro($sqlDelPro);
 
     $_SESSION['situacao'] = $resultado;
     $_SESSION['acao'] = 'Deleção';
 
-    header('Location: ./indexProduto.php');
+    header('Location: ./indexFormaPagamento.php');
 } else {
     $_SESSION['situacao'] = $erro;
-    header('Location: ./indexProduto.php');
+    header('Location: ./indexFormaPagamento.php');
 }
 ?>

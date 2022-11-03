@@ -2,6 +2,9 @@ function updateButtons(select){
     const btnEnviar = document.getElementById('btnEnviar')
     const btnAtualizar = document.getElementById('btnAtualizar')
     const btnDeletar = document.getElementById('btnDeletar')
+    const clin_Nome = document.getElementById('clin_Nome')
+    const clin_Telefone = document.getElementById('clin_Telefone')
+    const clin_Endereco = document.getElementById('clin_Endereco')
 
     if(select.value != ""){
         btnEnviar.disabled = true
@@ -13,6 +16,10 @@ function updateButtons(select){
         btnEnviar.disabled = false
         btnAtualizar.disabled = true
         btnDeletar.disabled = true
+
+        clin_Nome.value = ""
+        clin_Telefone.value = ""
+        clin_Endereco.value = ""
     }
 }
 
