@@ -101,6 +101,7 @@ function updateRegistro($update)
 
     if (mysqli_query($con, $update)) {
         echo "Atualizado com sucesso";
+              
     }
     else {
         echo "Erro: " . $update . "<br />" . mysqli_error($con);

@@ -2,13 +2,10 @@
 require_once '../mysql.php';
 
 $idClinica = $_POST['idClin'];
-//$nomeClinica = $_POST['nomeClin'];
-//$telClinica = $_POST['telClin'];
-//$endeClinica = $_POST['endeClin'];
 
 $validado = true;
 
-$listaCatPro = [];
+$listaClinica = [];
 
 # Conferencia: se diferente de numerico validado se torna falso
 if(!is_numeric($idClinica)){
