@@ -30,7 +30,7 @@ function preencherCampos(id){
     const clin_Telefone = document.getElementById('clin_Telefone')
     const clin_Endereco = document.getElementById('clin_Endereco')
 
-    dadosString.split('/').forEach(function(dado){
+    dadosString.split('|').forEach(function(dado){
         dadosArray.push(dado.split(';'))
     })
 

@@ -35,7 +35,7 @@ array_unshift($listaClinica, ["clin_Id" => "", "clin_Nome" => ""]);
 
     <h1>Clínicas</h1>
     <hr>
-    <form id="form" method="POST" action="insertClinica.php" onSubmit="return valida_dados(this)">
+    <form id="form" method="POST" action="insertClinica.php">
         <p>
             Clínica:
             <select name="idClin" onchange="updateButtons(this)">

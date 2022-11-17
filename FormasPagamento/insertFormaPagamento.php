@@ -15,9 +15,9 @@ if(empty($fp_Nome) || empty($fp_Parcelavel)){
 
 //* Verifica se algum dos campos contém os caracteres ';:/"
 $uniao = $fp_Nome.$fp_Parcelavel;
-if(strpos($uniao,"'") || strpos($uniao,";") || strpos($uniao,":") || strpos($uniao,"/") || strpos($uniao,'"')){
+if(strpos($uniao,"'") || strpos($uniao,";") || strpos($uniao,":") || strpos($uniao,"|") || strpos($uniao,'"')){
     $validado = false;
-    $erro = $erro."Não foi possível INSERIR, não são permitidos os caracteres';:/".'"'."<br>";
+    $erro = $erro."Não foi possível INSERIR, não são permitidos os caracteres';:|".'"'."<br>";
 }
 
 //* Verifica já existe na tabela o nome digitado, não deve existir

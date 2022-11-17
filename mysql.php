@@ -118,20 +118,20 @@ function arrayToString ($dados){
 
     foreach($dados as $kDados => $vDados) {
         if($kDados != 0){
-            $stringDados = $stringDados."/";
+            $stringDados = $stringDados."|";
         }
 
         $keys = array_keys($vDados);
 
         foreach($vDados as $kDado => $vDado){
             if($keys[0] != $kDado){
-                $stringDados = $stringDados.";";
+                $stringDados = $stringDados."§";
             }
 
             $kDado = $kDado;
             $vDado = $vDado;
 
-            $stringDados = $stringDados."$kDado:'$vDado'";
+            $stringDados = $stringDados."$kDado".'¬'."'$vDado'";
         }
     }
 

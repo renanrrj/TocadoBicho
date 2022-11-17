@@ -36,7 +36,7 @@ array_unshift($listaCatProduto, ["catpro_Id" => "", "catpro_Nome" => ""]);
     <h1>Categorias de produto</h1>
     <hr>
 
-    <form id="form" method="POST" action="insertCategoriaProduto.php" onSubmit="return valida_dados(this)">
+    <form id="form" method="POST" action="insertCategoriaProduto.php">
         <p>
             Categoria de produto:
             <select id="catpro_Id" name="idCatPro" onchange="updateButtons(this)">

@@ -18,9 +18,9 @@ if(empty($pro_Id) || empty($pro_Id_Categoria) || empty($pro_Nome) || empty($pro_
 
 //* Verifica se algum dos campos contém os caracteres ';:/"
 $uniao = $pro_Id.$pro_Id_Categoria.$pro_Nome.$pro_Preco.$pro_Detalhe;
-if(strpos($uniao,"'") || strpos($uniao,";") || strpos($uniao,":") || strpos($uniao,"/") || strpos($uniao,'"')){
+if(strpos($uniao,"'") || strpos($uniao,";") || strpos($uniao,":") || strpos($uniao,"|") || strpos($uniao,'"')){
     $validado = false;
-    $erro = $erro."Não foi possível ALTERAR, não são permitidos os caracteres ';:/".'"'."<br>";
+    $erro = $erro."Não foi possível ALTERAR, não são permitidos os caracteres ';:|".'"'."<br>";
 }
 
 //* Verifica se o produto selecionado para edição realmente existe na tabela

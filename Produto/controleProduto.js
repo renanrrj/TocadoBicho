@@ -33,7 +33,7 @@ function preencherCampos(id){
     const pro_Id_Categoria = document.getElementById('pro_Id_Categoria') 
     const pro_Detalhe = document.getElementById('pro_Detalhe') 
 
-    dadosString.split('/').forEach(function(dado){
+    dadosString.split('|').forEach(function(dado){
         dadosArray.push(dado.split(';'))
     })
 

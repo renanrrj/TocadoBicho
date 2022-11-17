@@ -6,17 +6,49 @@ $racaAnimal = $_POST['ani_Raca'];
 $kgAnimal = $_POST['ani_Peso'];
 $cmAnimal = $_POST['ani_Altura'];
 $endeAnimal = $_POST['ani_Endereco'];
-
-
-$sqlAnimal = "SELECT * FROM tb_animal where ani_Nome = '$nomeAnimal'";
-$listaAnimal = selectRegistros($sqlAnimal);
-
+$idadeAnimal = $_POST['ani_Idade'];
+$especieAnimal = $_POST['ani_Especie'];
+$fotoAnimal = $_POST['ani_Foto'];
 $validado = true;
 
-if($listaAnimal != []){
+//* Verifica se existe algum campo obrigatório vazio e ativa o erro "nao foi possivel INSERIR,..."
+if(empty($nomeAnimal) || empty($racaAnimal) || empty($kgAnimal) || empty($cmAnimal) || empty($endeAnimal) || empty($idadeAnimal) || empty($especieAnimal) || empty($fotoAnimal)){
     $validado = false;
-    echo 'NÃO foi possível INSERIR';
+    $erro = "Não foi possível INSERIR, existem campos obrigatórios em branco<br>";
 }
+
+//* Verifica se algum dos campos contém os caracteres '§¬/"
+$uniao = $nomeAnimal.$racaAnimal.$kgAnimal.$cmAnimal.$endeAnimal.$idadeAnimal.$especieAnimal.$fotoAnimal;
+if(strpos($uniao,"'") || strpos($uniao,"§") || strpos($uniao,"¬") || strpos($uniao,"|") || strpos($uniao,'"')){
+    $validado = false;
+    $erro = $erro."Não foi possível INSERIR, não são permitidos os caracteres '§¬|".'"'."<br>";
+}
+
+//* Substitui , por .
+if(strpos($kgAnimal,",") || strpos($cmAnimal,",")){
+    $kgAnimal = str_replace(",",".",$kgAnimal);
+    $cmAnimal = str_replace(",",".",$cmAnimal);
+}
+
+//* Verifica a quilo e altura digitados são válidos
+if (!is_numeric($kgAnimal) || $kgAnimal < 1 || !is_numeric($cmAnimal) || $cmAnimal < 1){
+    $validado = false;
+    $erro = $erro.'Não foi possível INSERIR, altura e peso não podem ser negativos, nem zero e devem ser um número<br>';
+}
+
+//* Verifica se a idade é válida
+if (!is_numeric($idadeAnimal) || $idadeAnimal < 0){
+    $validado = false;
+    $erro = $erro.'Não foi possível INSERIR, idade não pode ser negativa e deve ser um número<br>';
+}
+
+// $sqlAnimal = "SELECT * FROM tb_animal where ani_Nome = '$nomeAnimal'";
+// $listaAnimal = selectRegistros($sqlAnimal);
+
+// if($listaAnimal != []){
+//     $validado = false;
+//     echo 'NÃO foi possível INSERIR';
+// }
 
 # Geração de ID
 $idAnimal =1;
@@ -34,10 +66,11 @@ while ($idAnimalLivre == false){
 
 #Inserindo o Dado
 if($validado){
-    $sqlInAnimal = "INSERT INTO `tb_animal`(ani_Id, ani_Nome, ani_Raca, ani_Peso, ani_Altura, ani_Endereco) VALUES ($idAnimal, '$nomeAnimal', '$racaAnimal', $kgAnimal, $cmAnimal, '$endeAnimal')";
+    $sqlInAnimal = "INSERT INTO `tb_animal`(ani_Id, ani_Nome, ani_Raca, ani_Peso, ani_Altura, ani_Endereco, ani_Especie, ani_Idade, ani_Foto) VALUES ($idAnimal, '$nomeAnimal', '$racaAnimal', $kgAnimal, $cmAnimal, '$endeAnimal','$especieAnimal', $idadeAnimal, '$fotoAnimal')";
     $resultdo = insereRegistro($sqlInAnimal);    
 }else{
     echo 'dados inválidos';
+    echo $erro;
 }
 
 ?>

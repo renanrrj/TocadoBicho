@@ -27,7 +27,7 @@ function preencherCampos(id){
     let dadosString = document.getElementById('dadosString').innerText
     let dadosArray = []
 
-    dadosString.split('/').forEach(function(dado){
+    dadosString.split('|').forEach(function(dado){
         dadosArray.push(dado.split(';'))
     })
 
