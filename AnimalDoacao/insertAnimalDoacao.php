@@ -10,6 +10,7 @@ $idadeAnimal = $_POST['ani_Idade'];
 $especieAnimal = $_POST['ani_Especie'];
 $fotoAnimal = $_POST['ani_Foto'];
 $validado = true;
+$erro = "";
 
 //* Verifica se existe algum campo obrigatório vazio e ativa o erro "nao foi possivel INSERIR,..."
 if(empty($nomeAnimal) || empty($racaAnimal) || empty($kgAnimal) || empty($cmAnimal) || empty($endeAnimal) || empty($idadeAnimal) || empty($especieAnimal) || empty($fotoAnimal)){
@@ -42,14 +43,6 @@ if (!is_numeric($idadeAnimal) || $idadeAnimal < 0){
     $erro = $erro.'Não foi possível INSERIR, idade não pode ser negativa e deve ser um número<br>';
 }
 
-// $sqlAnimal = "SELECT * FROM tb_animal where ani_Nome = '$nomeAnimal'";
-// $listaAnimal = selectRegistros($sqlAnimal);
-
-// if($listaAnimal != []){
-//     $validado = false;
-//     echo 'NÃO foi possível INSERIR';
-// }
-
 # Geração de ID
 $idAnimal =1;
 $idAnimalLivre = false;
@@ -63,14 +56,21 @@ while ($idAnimalLivre == false){
         $idAnimal++;
     }
 }
-
+    echo $erro;
 #Inserindo o Dado
 if($validado){
     $sqlInAnimal = "INSERT INTO `tb_animal`(ani_Id, ani_Nome, ani_Raca, ani_Peso, ani_Altura, ani_Endereco, ani_Especie, ani_Idade, ani_Foto) VALUES ($idAnimal, '$nomeAnimal', '$racaAnimal', $kgAnimal, $cmAnimal, '$endeAnimal','$especieAnimal', $idadeAnimal, '$fotoAnimal')";
-    $resultdo = insereRegistro($sqlInAnimal);    
-}else{
-    echo 'dados inválidos';
-    echo $erro;
+    $resultado = insereRegistro($sqlInAnimal);    
+
+    $_SESSION['situacao'] = $resultado;
+    $_SESSION['acao'] = 'Inserção';
+
+    echo "Passou: $resultado";
+    // header('Location: ./indexAnimalDoacao.php');
+} else {
+    $_SESSION['situacao'] = $erro;
+    // header('Location: ./indexAnimalDoacao.php');
 }
 
 ?>
+<!-- 62 -->

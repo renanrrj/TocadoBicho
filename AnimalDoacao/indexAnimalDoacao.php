@@ -65,12 +65,12 @@ array_unshift($listaAnimal, ["ani_Id" => "", "ani_Nome" => ""]);
         <p>
             Peso (kg):
             <input id="ani_Peso" type="number" name="ani_Peso" size="20">
-            #Fazer tratativa de só usar . para separar decimal
+            
         </p>
         <p>
             Altura (cm):
             <input id="ani_Altura" type="number" name="ani_Altura" size="20">
-            #Fazer tratativa de só usar . para separar decimal
+            
         </p>
         <p>
             Idade:
@@ -91,7 +91,30 @@ array_unshift($listaAnimal, ["ani_Id" => "", "ani_Nome" => ""]);
     <input id="btnDeletar" type="button" value="Deletar" onclick="document.getElementById('form').action = './deleteAnimalDoacao.php'; document.getElementById('form').submit()" disabled>
     <input id="btnAtualizar" type="button" value="Alterar" onclick="document.getElementById('form').action = './updateAnimalDoacao.php'; document.getElementById('form').submit();" disabled>
 
-    <img id="animal_img"/>
+  
+
+    <?php
+        $situacao = isset($_SESSION['situacao']) ? $_SESSION['situacao'] : "";
+        $acao = isset($_SESSION['acao']) ? $_SESSION['acao'] : "";
+
+        if($acao != ""){
+            if(is_numeric($situacao)){
+                if($acao == 'Inserção'){
+                    echo "<p style='color: green; font-weight: bold'>Inserido com sucesso</p>";
+                }elseif($acao == 'Alteração'){
+                    echo "<p style='color: green; font-weight: bold'>Alterado com sucesso</p>";
+                }elseif($acao == 'Deleção'){
+                    echo "<p style='color: green; font-weight: bold'>Deletado com sucesso</p>";
+                }
+            }else{
+                echo "<p style='color: red; font-weight: bold'>$situacao</p>";
+            }
+        }
+    ?>
+
+      <img id="animal_img"/>
+
+
 </body>
 
 </html>
