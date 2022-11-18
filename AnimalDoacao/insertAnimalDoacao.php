@@ -66,10 +66,10 @@ if($validado){
     $_SESSION['acao'] = 'Inserção';
 
     echo "Passou: $resultado";
-    // header('Location: ./indexAnimalDoacao.php');
+    header('Location: ./indexAnimalDoacao.php');
 } else {
     $_SESSION['situacao'] = $erro;
-    // header('Location: ./indexAnimalDoacao.php');
+    header('Location: ./indexAnimalDoacao.php');
 }
 
 ?>
