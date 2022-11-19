@@ -1,5 +1,6 @@
 <?php
 require_once '../mysql.php';
+session_start();
 
 $nomeAnimal = $_POST['ani_Nome'];
 $racaAnimal = $_POST['ani_Raca'];
@@ -15,14 +16,14 @@ $validado = true;
 //* Verifica se existe algum campo obrigatório vazio e ativa o erro "nao foi possivel INSERIR,..."
 if(empty($idadeAnimal) ||empty($especieAnimal) ||empty($fotoAnimal) ||empty($nomeAnimal) || empty($racaAnimal) || empty($kgAnimal) || empty($cmAnimal) || empty($endeAnimal) || empty($idadeAnimal) || empty($especieAnimal) || empty($fotoAnimal)){
     $validado = false;
-    $erro = "Não foi possível INSERIR, existem campos obrigatórios em branco<br>";
+    $erro = "Não foi possível ALTERAR, existem campos obrigatórios em branco<br>";
 }
 
 //* Verifica se algum dos campos contém os caracteres '§¬/"
 $uniao = $nomeAnimal.$racaAnimal.$kgAnimal.$cmAnimal.$endeAnimal.$idadeAnimal.$especieAnimal.$fotoAnimal;
 if(strpos($uniao,"'") || strpos($uniao,"§") || strpos($uniao,"¬") || strpos($uniao,"|") || strpos($uniao,'"')){
     $validado = false;
-    $erro = $erro."Não foi possível INSERIR, não são permitidos os caracteres '§¬|".'"'."<br>";
+    $erro = $erro."Não foi possível ALTERAR, não são permitidos os caracteres '§¬|".'"'."<br>";
 }
 
 //* Substitui , por .
@@ -34,13 +35,13 @@ if(strpos($kgAnimal,",") || strpos($cmAnimal,",")){
 //* Verifica a quilo e altura digitados são válidos
 if (!is_numeric($kgAnimal) || $kgAnimal < 1 || !is_numeric($cmAnimal) || $cmAnimal < 1){
     $validado = false;
-    $erro = $erro.'Não foi possível INSERIR, altura e peso não podem ser negativos, nem zero e devem ser um número<br>';
+    $erro = $erro.'Não foi possível ALTERAR, altura e peso não podem ser negativos, nem zero e devem ser um número<br>';
 }
 
 //* Verifica se a idade é válida
 if (!is_numeric($idadeAnimal) || $idadeAnimal < 0){
     $validado = false;
-    $erro = $erro.'Não foi possível INSERIR, idade não pode ser negativa e deve ser um número<br>';
+    $erro = $erro.'Não foi possível ALTERAR, idade não pode ser negativa e deve ser um número<br>';
 }
 
 $listaAnimalDoacao = [];
@@ -56,22 +57,24 @@ if(!is_numeric($idAnimal)){
 # Verifica se há matéria com esse Id para poder altera-la
 if($listaAnimalDoacao == []){
     $validado = false;
-     $erro = $erro.'Edição não permitida - ';
+     $erro = $erro.'Edição não permitida - <br>';
 }
 
 //* Alterando o Dado
 if ($validado) {
-    $sqlUpAni = "UPDATE `tb_animal` SET `ani_Nome` = '$nomeAnimal', `ani_Raca` = $racaAnimal, `ani_Peso` = $kgAnimal, `ani_Altura` = $cmAnimal, `ani_Endereco` = '$endeAnimal', `ani_Idade` = $idadeAnimal, `ani_Especie` = '$especieAnimal', `ani_Foto` = '$fotoAnimal' WHERE `ani_Id` = $idAnimal";
+    $sqlUpAni = "UPDATE `tb_animal` SET `ani_Nome` = '$nomeAnimal', `ani_Raca` = '$racaAnimal', `ani_Peso` = $kgAnimal, `ani_Altura` = $cmAnimal, `ani_Endereco` = '$endeAnimal', `ani_Idade` = $idadeAnimal, `ani_Especie` = '$especieAnimal', `ani_Foto` = '$fotoAnimal' WHERE `ani_Id` = $idAnimal";
     $resultado = updateRegistro($sqlUpAni);
+
+    echo $resultado;
 
     $_SESSION['situacao'] = $resultado;
     $_SESSION['acao'] = 'Alteração';
 
     echo "Passou: $resultado";
-    header('Location: ./indexProduto.php');
+    header('Location: ./indexAnimalDoacao.php');
 } else {
     $_SESSION['situacao'] = $erro;
-    header('Location: ./indexProduto.php');
+    header('Location: ./indexAnimalDoacao.php');
 }
 
 ?>

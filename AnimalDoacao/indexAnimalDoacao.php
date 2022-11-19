@@ -1,5 +1,6 @@
 <?php
 require_once '../mysql.php';
+session_start();
 
 $sqlAnimal = "SELECT * FROM tb_animal";
 $listaAnimal = selectRegistros($sqlAnimal);
@@ -40,7 +41,7 @@ array_unshift($listaAnimal, ["ani_Id" => "", "ani_Nome" => ""]);
     <form id="form" method="POST" action="insertAnimal.php">
         <p>
             Animal para doação:
-            <select name="idAni" onchange="updateButtons(this)">
+            <select name="ani_Id" onchange="updateButtons(this)">
                 <?php
                 foreach ($listaAnimal as $tb_animal) {
                 ?>
@@ -83,7 +84,7 @@ array_unshift($listaAnimal, ["ani_Id" => "", "ani_Nome" => ""]);
         <p>
             Foto:
             <input id="ani_Foto" type="file" accept="image/png, image/gif, image/jpeg, image/webp" style="width:50%" onchange="getBase64(this.files[0])">
-            <input id="ani_Foto_txt" type="text" name="ani_Foto" style="display:none">
+            <input id="ani_Foto_txt" type="text" name="ani_Foto" >
         </p>
     </form>
 
@@ -109,6 +110,8 @@ array_unshift($listaAnimal, ["ani_Id" => "", "ani_Nome" => ""]);
             }else{
                 echo "<p style='color: red; font-weight: bold'>$situacao</p>";
             }
+        }else{
+            echo "<p style='color: red; font-weight: bold'>$situacao</p>";
         }
     ?>
 

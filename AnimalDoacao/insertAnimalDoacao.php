@@ -1,5 +1,6 @@
 <?php
 require_once "../mysql.php";
+session_start();
 
 $nomeAnimal = $_POST['ani_Nome'];
 $racaAnimal = $_POST['ani_Raca'];
@@ -56,7 +57,7 @@ while ($idAnimalLivre == false){
         $idAnimal++;
     }
 }
-    echo $erro;
+
 #Inserindo o Dado
 if($validado){
     $sqlInAnimal = "INSERT INTO `tb_animal`(ani_Id, ani_Nome, ani_Raca, ani_Peso, ani_Altura, ani_Endereco, ani_Especie, ani_Idade, ani_Foto) VALUES ($idAnimal, '$nomeAnimal', '$racaAnimal', $kgAnimal, $cmAnimal, '$endeAnimal','$especieAnimal', $idadeAnimal, '$fotoAnimal')";
@@ -68,6 +69,7 @@ if($validado){
     echo "Passou: $resultado";
     header('Location: ./indexAnimalDoacao.php');
 } else {
+    echo "Erro: $erro";
     $_SESSION['situacao'] = $erro;
     header('Location: ./indexAnimalDoacao.php');
 }

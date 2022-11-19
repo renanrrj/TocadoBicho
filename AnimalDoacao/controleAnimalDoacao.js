@@ -10,6 +10,7 @@ function updateButtons(select){
     const ani_Idade = document.getElementById('ani_Idade')
     const ani_Especie = document.getElementById('ani_Especie')
     const animal_img = document.getElementById('animal_img')
+    const animal_txt = document.getElementById('ani_Foto_txt')
 
     if(select.value != ""){
         btnEnviar.disabled = true
@@ -30,10 +31,13 @@ function updateButtons(select){
         ani_Idade.value = "" 
         ani_Especie.value = ""
         animal_img.src = ""
+        animal_txt.value = ""
     }
 }
 
 function preencherCampos(id){
+    const animal_txt2 = document.getElementById('ani_Foto_txt')
+
     let dadosString = document.getElementById('dadosString').innerText
     let dadosArray = []
 
@@ -43,8 +47,6 @@ function preencherCampos(id){
 
     let reg_selecionado = dadosArray.find(it => it.includes(`ani_Id¬'${id}'`))
 
-    console.log(reg_selecionado)
-
     ani_Nome.value = reg_selecionado.find(it => it.split('¬')[0] == 'ani_Nome').split('¬')[1].replaceAll("'","")
     ani_Raca.value = reg_selecionado.find(it => it.split('¬')[0] == 'ani_Raca').split('¬')[1].replaceAll("'","")
     ani_Peso.value = reg_selecionado.find(it => it.split('¬')[0] == 'ani_Peso').split('¬')[1].replaceAll("'","")
@@ -53,8 +55,7 @@ function preencherCampos(id){
     ani_Idade.value = reg_selecionado.find(it => it.split('¬')[0] == 'ani_Idade').split('¬')[1].replaceAll("'","")
     ani_Especie.value = reg_selecionado.find(it => it.split('¬')[0] == 'ani_Especie').split('¬')[1].replaceAll("'","")
     animal_img.src = reg_selecionado.find(it => it.split('¬')[0] == 'ani_Foto').split('¬')[1].replaceAll("'","")
-
-
+    animal_txt2.value = reg_selecionado.find(it => it.split('¬')[0] == 'ani_Foto').split('¬')[1].replaceAll("'","")
 }
 
 //Converte o arquivo em BASE64

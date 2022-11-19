@@ -103,6 +103,8 @@ array_unshift($listaProduto, ["pro_Id" => "", "pro_Nome" => "","pro_Preco"=>"","
             }else{
                 echo "<p style='color: red; font-weight: bold'>$situacao</p>";
             }
+        }else{
+            echo "<p style='color: red; font-weight: bold'>$situacao</p>";
         }
     ?>
 </body>
