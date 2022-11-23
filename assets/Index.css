@@ -168,13 +168,41 @@ body {
   margin-top: 150px;
 }
 
+/* CARTÕES E SEUS DETALHES */
+.container-cartoes{
+  max-width: 100%;
+
+  margin-top:232px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .cartao {
   border-radius: 5px;
   box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
   padding: 40px;
   margin: 20px;
-  width: 250px;
-  height: 400px;
+  width: 200px;
+  height: 300px;
   transition: all 0.3s ease-out;
+}
 
+.article-img{
+  width:200px;
+  height:200px;
+  object-fit:cover;
+}
+
+.article-title{
+  width: auto;
+  font-size: 20px;
+  text-align: center;
+}
+
+.article-price{
+  width: auto;
+  font-size: 30px;
+  font-weight: bolder;
+  text-align: center;
 }

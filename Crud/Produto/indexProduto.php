@@ -79,6 +79,11 @@ array_unshift($listaProduto, ["pro_Id" => "", "pro_Nome" => "","pro_Preco"=>"","
             Preço:
             <input id="pro_Preco" type="number" name="pro_Preco" size="20" style="width:50%">
         </p>
+        <p>
+            Foto:
+            <input id="pro_Foto" type="file" accept="image/png, image/gif, image/jpeg, image/webp" style="width:50%" onchange="getBase64(this.files[0])">
+            <input id="pro_Foto_txt" type="text" name="pro_Foto" style="display:none">
+        </p>
     </form>
 
     <!-- Botoes -->
@@ -107,6 +112,8 @@ array_unshift($listaProduto, ["pro_Id" => "", "pro_Nome" => "","pro_Preco"=>"","
             echo "<p style='color: red; font-weight: bold'>$situacao</p>";
         }
     ?>
+
+<img id="pro_img"/>
 </body>
 
 </html>

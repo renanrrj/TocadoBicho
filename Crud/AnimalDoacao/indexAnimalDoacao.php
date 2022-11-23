@@ -84,7 +84,7 @@ array_unshift($listaAnimal, ["ani_Id" => "", "ani_Nome" => ""]);
         <p>
             Foto:
             <input id="ani_Foto" type="file" accept="image/png, image/gif, image/jpeg, image/webp" style="width:50%" onchange="getBase64(this.files[0])">
-            <input id="ani_Foto_txt" type="text" name="ani_Foto" >
+            <input id="ani_Foto_txt" type="text" name="ani_Foto" style="display:none">
         </p>
     </form>
 
@@ -115,7 +115,7 @@ array_unshift($listaAnimal, ["ani_Id" => "", "ani_Nome" => ""]);
         }
     ?>
 
-      <img id="animal_img"/>
+    <img id="animal_img"/>
 
 
 </body>

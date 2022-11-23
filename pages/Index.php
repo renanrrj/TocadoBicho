@@ -85,37 +85,22 @@
     </section>
 
 
-    <section class="cards" style="margin-top:232px">
-        <article>
-            <img class="article-img" src="https://a-static.mlcdn.com.br/800x560/racao-special-dog-junior-premium-carne-para-caes-filhotes-specialdog/petben/8ba7a95a2ac311edb2394201ac185019/770b4d512a7ca417fa30c46e592e0441.jpeg" alt=" " style="width:200px; height:200px; object-fit:cover"/>
-            <h1 class="article-title">
-                SpecialDog 500g
-            </h1>
+    <section class="container-cartoes">
+        <?php
+          foreach($listaProduto as $produto){ 
+        ?>
+        <article class="cartao">
+            <img class="article-img" src="<?php echo $produto['pro_Foto']?>" />
+            <p class="article-title">
+                <?php echo $produto['pro_Nome']?>
+            </p>
+            <p class="article-price">
+                <?php echo "R$ ".str_replace(".",",",number_format($produto['pro_Preco'],2))?>
+            </p>
         </article>
-        <article>
-            <img class="article-img" src="https://images.tcdn.com.br/img/img_prod/742943/casinha_de_madeira_pinus_cachorro_2041_1_20200707100354.jpg" alt=" " style="width:200px; height:200px; object-fit:cover"/>
-            <h1 class="article-title">
-                Casinha de madeira G
-            </h1>
-        </article>
-        <article>
-            <img class="article-img" src="https://www.plasvale.com.br/wp-content/uploads/2021/04/Brinquedo-Osso-De-Borracha-Para-Cachorro-imagem.png" alt=" " style="width:200px; height:200px; object-fit:cover"/>
-            <h1 class="article-title">
-                Mordedor
-            </h1>
-        </article>
-        <article>
-            <img class="article-img" src="http://placekitten.com/280/250" alt=" " style="width:200px; height:200px; object-fit:cover"/>
-            <h1 class="article-title">
-              Nexgard
-            </h1>
-        </article>
-        <article>
-            <img class="article-img" src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcS7BlT2SWPk8Ec1w7_FtkX4Dc_2VH1heJ7T1kvQboYWNK51mqGnxTbZXIH8gmMUN949h2Qc3faT0co8WFaOPIyDzZ8rqLXKCe7sLAr0-lvx0_cjp9cXyZFw4A&usqp=CAE" alt=" " style="width:200px; height:200px; object-fit:cover"/>
-            <h1 class="article-title">
-              Pote de ração
-            </h1>
-        </article>
+        <?php
+          }
+        ?>
     </section>
 
 

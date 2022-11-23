@@ -6,21 +6,19 @@ $pro_Id_Categoria = $_POST['pro_Id_Categoria'];
 $pro_Nome = $_POST['pro_Nome'];
 $pro_Preco = $_POST['pro_Preco'];
 $pro_Detalhe = $_POST['pro_Detalhe'];
+$pro_Foto = $_POST['pro_Foto'];
 $validado = true;
 $erro = "";
 
-echo "pro_Nome: $pro_Nome";
-echo "pro_Detalhe: $pro_Detalhe";
-
 //* Verifica se existe algum campo obrigatório vazio
-if(empty($pro_Id_Categoria) || empty($pro_Nome) || empty($pro_Preco) || empty($pro_Detalhe)){
+if(empty($pro_Id_Categoria) || empty($pro_Nome) || empty($pro_Preco) || empty($pro_Detalhe) || empty($pro_Foto)){
     $validado = false;
     $erro = "Não foi possível INSERIR, existem campos obrigatórios em branco<br>";
 }
 
-//* Verifica se algum dos campos contém os caracteres ';:/"
-$uniao = $pro_Id_Categoria.$pro_Nome.$pro_Preco.$pro_Detalhe;
-if(strpos($uniao,"'") || strpos($uniao,";") || strpos($uniao,":") || strpos($uniao,"|") || strpos($uniao,'"')){
+//* Verifica se algum dos campos contém os caracteres '§¬/"
+$uniao = $pro_Id_Categoria.$pro_Nome.$pro_Preco.$pro_Detalhe.$pro_Foto;
+if(strpos($uniao,"'") || strpos($uniao,"§") || strpos($uniao,"¬") || strpos($uniao,"|") || strpos($uniao,'"')){
     $validado = false;
     $erro = $erro."Não foi possível INSERIR, não são permitidos os caracteres ';:|".'"'."<br>";
 }
@@ -65,15 +63,15 @@ if ($validado) {
         }
     }
 
-    $sqlInPro = "INSERT INTO `tb_produto`(pro_Id, pro_Id_Categoria, pro_Nome, pro_Preco, pro_Detalhe) VALUES ($idPro, $pro_Id_Categoria, '$pro_Nome', $pro_Preco, '$pro_Detalhe')";
+    $sqlInPro = "INSERT INTO `tb_produto`(pro_Id, pro_Id_Categoria, pro_Nome, pro_Preco, pro_Detalhe, pro_Foto) VALUES ($idPro, $pro_Id_Categoria, '$pro_Nome', $pro_Preco, '$pro_Detalhe', '$pro_Foto')";
     $resultado = insereRegistro($sqlInPro);
 
     $_SESSION['situacao'] = $resultado;
     $_SESSION['acao'] = 'Inserção';
 
-    // header('Location: ./indexProduto.php');
+    header('Location: ./indexProduto.php');
 } else {
     $_SESSION['situacao'] = $erro;
-    // header('Location: ./indexProduto.php');
+    header('Location: ./indexProduto.php');
 }
 ?>

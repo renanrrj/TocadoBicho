@@ -14,7 +14,7 @@ $idAnimal = $_POST ['ani_Id'];
 $validado = true;
 
 //* Verifica se existe algum campo obrigatório vazio e ativa o erro "nao foi possivel INSERIR,..."
-if(empty($idadeAnimal) ||empty($especieAnimal) ||empty($fotoAnimal) ||empty($nomeAnimal) || empty($racaAnimal) || empty($kgAnimal) || empty($cmAnimal) || empty($endeAnimal) || empty($idadeAnimal) || empty($especieAnimal) || empty($fotoAnimal)){
+if(empty($idadeAnimal) ||empty($especieAnimal) ||empty($fotoAnimal) ||empty($nomeAnimal) || empty($racaAnimal) || empty($kgAnimal) || empty($cmAnimal) || empty($endeAnimal) || empty($idadeAnimal) || empty($especieAnimal)){
     $validado = false;
     $erro = "Não foi possível ALTERAR, existem campos obrigatórios em branco<br>";
 }
