@@ -54,7 +54,7 @@ array_unshift($listaClinica, ["clin_Id" => "", "clin_Nome" => ""]);
             <br>
             <br>
             Telefone:
-            <input id="clin_Telefone" type="tel" name="telClin" size="20">
+            <input id="clin_Telefone" type="number" name="telClin" size="20">
             <br>
             <br>
             Endereço:

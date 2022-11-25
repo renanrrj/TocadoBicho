@@ -73,6 +73,4 @@ if($validado){
     $_SESSION['situacao'] = $erro;
     header('Location: ./indexAnimalDoacao.php');
 }
-
 ?>
-<!-- 62 -->
