@@ -40,19 +40,27 @@ function preencherCampos(id){
     const pro_Detalhe = document.getElementById('pro_Detalhe') 
 
     dadosString.split('|').forEach(function(dado){
-        dadosArray.push(dado.split(';'))
+        dadosArray.push(dado.split('§'))
     })
 
     let reg_selecionado = dadosArray.find(it => it.includes(`pro_Id:'${id}'`))
 
     console.log(reg_selecionado)
 
-    pro_Nome.value = reg_selecionado.find(it => it.split(':')[0] == 'pro_Nome').split(':')[1].replaceAll("'","")
-    pro_Preco.value = reg_selecionado.find(it => it.split(':')[0] == 'pro_Preco').split(':')[1].replaceAll("'","")
-    pro_Id_Categoria.value = reg_selecionado.find(it => it.split(':')[0] == 'pro_Id_Categoria').split(':')[1].replaceAll("'","")
-    pro_Detalhe.value = reg_selecionado.find(it => it.split(':')[0] == 'pro_Detalhe').split(':')[1].replaceAll("'","")
+    pro_Nome.value = reg_selecionado.find(it => it.split('¬')[0] == 'pro_Nome').split('¬')[1].replaceAll("'","")
+    pro_Preco.value = reg_selecionado.find(it => it.split('¬')[0] == 'pro_Preco').split('¬')[1].replaceAll("'","")
+    pro_Id_Categoria.value = reg_selecionado.find(it => it.split('¬')[0] == 'pro_Id_Categoria').split('¬')[1].replaceAll("'","")
+    pro_Detalhe.value = reg_selecionado.find(it => it.split('¬')[0] == 'pro_Detalhe').split('¬')[1].replaceAll("'","")
     pro_Foto.src = reg_selecionado.find(it => it.split('¬')[0] == 'pro_Foto').split('¬')[1].replaceAll("'","")
     pro_foto_txt2.value = reg_selecionado.find(it => it.split('¬')[0] == 'pro_Foto').split('¬')[1].replaceAll("'","")
+}
+
+function onFileInputChange(file){
+    const pro_img = document.getElementById('pro_img')
+    let url = URL.createObjectURL(file)
+
+    pro_img.src = url
+    getBase64(file)
 }
 
 //Converte o arquivo em BASE64

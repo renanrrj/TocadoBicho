@@ -1,9 +1,9 @@
-body{  /* corrigiu a margem colocou no canto superior esquerdo  */
+body{  /** corrigiu a margem colocou no canto superior esquerdo  */
     margin:0px;
     padding:0px;
 }
 
-/* MENU - Colocou fundo verde e alinhou o link do menu */
+/** MENU - Colocou fundo verde e alinhou o link do menu */
 .menu{
     height: 35px;
     width:100%;
@@ -15,7 +15,7 @@ body{  /* corrigiu a margem colocou no canto superior esquerdo  */
     align-items: center;
 }
 
-.menu_option{ /* adicionou cor preta ao menu limitou area de clic de acordo com a margem e altero o cursor qudo pasa em cima */
+.menu_option{ /** adicionou cor preta ao menu limitou area de clic de acordo com a margem e altero o cursor qudo pasa em cima */
     height:25px;
     padding-left: 8px;
     padding-right: 8px;
@@ -23,19 +23,45 @@ body{  /* corrigiu a margem colocou no canto superior esquerdo  */
     display: flex;
     align-items: center;
 
-    
     color:black;
     text-decoration: none;
     cursor: pointer;
 }
 
-.menu_option:hover{ /* colocou botao em branco ao sobrepor o mouse */
+.menu_option:hover{ /** colocou botao em branco ao sobrepor o mouse */
     background-color: white;
     border-radius: 15px;
 }
  
-.activated{ /* deixa o hover ativado qudo o menu está em uso */
+.activated{ /** deixa o hover ativado qudo o menu está em uso */
     background-color: white;
     border-radius: 15px;
     cursor: default;
+}
+
+/** ÁREA BRANCA */
+.content{
+    height: 100%;
+    display: flex;
+}
+
+/** LADO ESQUERDO*/
+.leftDiv{
+    width: 60%;
+}
+
+/** LADO DIREITO*/
+.rightDiv{
+    width: 40%;
+
+    padding-left: 0px;
+}
+
+#pro_img{
+    height: 350px;
+    width: 350px;
+    object-fit: contain;
+
+    border: 5px solid rgb(79, 226, 74);
+    border-radius: 20px;
 }
