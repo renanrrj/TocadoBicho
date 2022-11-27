@@ -4,16 +4,38 @@ require_once "../mysql.php";
 $nomeClinica = $_POST['nomeClin'];
 $telClinica = $_POST['telClin'];
 $endeClinica = $_POST['endeClin'];
-
-$sqlClinica = "SELECT * FROM tb_clinica where clin_Nome = '$nomeClinica'"; # Verifica se em catpro_Nome já existe o digitado em nomeCatProduto
-$listaClinica = selectRegistros($sqlClinica);
-
 $validado = true;
+
+
+# Verifica se em clin_nome já existe o digitado em nomeCatProduto
+$sqlClinica = "SELECT * FROM tb_clinica where clin_Nome = '$nomeClinica'"; 
+$listaClinica = selectRegistros($sqlClinica);
 
 if($listaClinica != []){
     $validado = false;
     echo 'NÃO foi possível INSERIR';
 }
+
+
+# Verifica se existe algum campo obrigatório vazio e ativa o erro "nao foi possivel INSERIR,..."
+if(empty($nomeClinica) || empty($telClinica) || empty($endeClinica) ){
+    $validado = false;
+    $erro = "Não foi possível INSERIR, existem campos obrigatórios em branco<br>";
+}
+
+# Verifica se algum dos campos contém os caracteres '§¬/"
+$uniao = $nomeClinica.$telClinica.$endeClinica;
+if(strpos($uniao,"'") || strpos($uniao,"§") || strpos($uniao,"¬") || strpos($uniao,"|") || strpos($uniao,'"') || strpos($uniao,'.')){
+    $validado = false;
+    $erro = $erro."Não foi possível INSERIR, não são permitidos os caracteres '§¬|".'"'."<br>";
+}
+
+//* Verifica se o telefone é válido
+if (!is_numeric($telClinica)){
+    $validado = false;
+    $erro = $erro.'Não foi possível INSERIR, idade não pode ser negativa e deve ser um número<br>';
+}
+
 
 # Geração de ID
 $idClinica =1;
@@ -36,5 +58,4 @@ if($validado){
 }else{
     echo 'dados inválidos';
 }
-
 ?>
