@@ -7,6 +7,7 @@ function updateButtons(select) {
     const pro_Preco = document.getElementById('pro_Preco')
     const pro_Detalhe = document.getElementById('pro_Detalhe')
     const pro_Foto = document.getElementById('pro_Foto')
+    const pro_img = document.getElementById('pro_img')
     const pro_Foto_txt = document.getElementById('pro_Foto_txt')
 
     if (select.value != "") {
@@ -24,7 +25,9 @@ function updateButtons(select) {
         pro_Nome.value = ""
         pro_Preco.value = ""
         pro_Detalhe.value = ""
-        pro_Foto.src = ""
+        pro_Foto.type = "text"
+        pro_Foto.type = "file"
+        pro_img.src = ""
         pro_Foto_txt.value = ""
     }
 }
@@ -55,12 +58,13 @@ function preencherCampos(id){
     pro_foto_txt2.value = reg_selecionado.find(it => it.split('¬')[0] == 'pro_Foto').split('¬')[1].replaceAll("'","")
 }
 
+//CARREGA IMAGE PARA SER MOSTRADA E MANDA ELA PARA SER GERADO SEU BASE64
 function onFileInputChange(file){
     const pro_img = document.getElementById('pro_img')
     let url = URL.createObjectURL(file)
 
     pro_img.src = url
-    getBase64(file)
+    document.getElementById('pro_Foto_txt').value = getBase64(file)
 }
 
 //Converte o arquivo em BASE64
@@ -68,7 +72,7 @@ function getBase64(file) {
     var reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
-        document.getElementById('pro_Foto_txt').value = reader.result//.split('base64,')[1];
+        return reader.result
     };
     reader.onerror = function (error) {
       console.log('Error: ', error);

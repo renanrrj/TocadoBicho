@@ -168,7 +168,33 @@ body {
   margin-top: 150px;
 }
 
-/* CARTÕES E SEUS DETALHES */
+/**CARTÕES DE CATEGORIAS E SEUS DETALHES */
+.categoria_container{
+  width:120px;
+  height:142px;
+  margin-left:50px;
+}
+.categoria_img{
+  object-fit: contain;
+  width: 120px;
+  height: 120px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.categoira_label{
+  height: 20px;
+  width: 120px;
+
+  font-size: 20px;
+  font-weight: bolder;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/** CARTÕES DE PRODUTOS E SEUS DETALHES */
 .container-cartoes{
   max-width: 100%;
 
