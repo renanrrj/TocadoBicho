@@ -1,11 +1,20 @@
 <?php
   require_once('../Crud/mysql.php');
 
+  $sqlProduto = "";
+  if(isset($_GET["cat"])){
+    $categoria = $_GET["cat"];
+    $sqlProduto = "SELECT * FROM tb_produto WHERE pro_Id_Categoria = $categoria ORDER BY pro_Nome";
+  }else{
+    $sqlProduto = "SELECT * FROM tb_produto ORDER BY pro_Nome";
+  }
+
   $sqlCatProduto = "SELECT * FROM tb_categoriaproduto ORDER BY catpro_Nome";
-  $sqlProduto = "SELECT * FROM tb_produto ORDER BY pro_Nome";
 
   $listaCatProduto = selectRegistros($sqlCatProduto);
   $listaProduto = selectRegistros($sqlProduto);
+
+//   array_unshift($listaCatProduto, ["catpro_Id" => "", "catpro_Nome" => "Limpar filtros", "catpro_Foto" => ""]);
 ?>
 
 <!DOCTYPE html>
@@ -31,17 +40,38 @@
             <div class="swiper-button-prev"></div>
             <div class="swiper-wrapper content meio">
                 <?php
-                    foreach($listaCatProduto as $categoria){
+                    if(isset($_GET['cat'])){
                 ?>
-                <div class="swiper-slide card">
-                    <div class="card-content">
-                        <div class="categoria_image">
-                            <img class="categoria_img" src="<?php echo $categoria['catpro_Foto'] ?>" alt="">
-                            <p class="categoira_label"><?php echo $categoria['catpro_Nome']?></p>
+                    <div class="swiper-slide card">
+                        <div class="categoria_container" onclick="window.location.replace('./Index.php')">
+                            <img class="categoria_img" src="../img/InfinityDog.jpg" style="object-fit:cover">
+                            <p class="categoira_label">Todos</p>
                         </div>
                     </div>
-                </div>
                 <?php
+                    }
+                ?>
+                <?php
+                    foreach($listaCatProduto as $categoria){
+                        if(isset($_GET['cat']) && $_GET['cat'] == $categoria['catpro_Id']){
+                ?>
+                            <div class="swiper-slide card">
+                                <div class="categoria_container selected">
+                                    <img class="categoria_img" src="<?php echo $categoria['catpro_Foto'] ?>" alt="">
+                                    <p class="categoira_label"><?php echo $categoria['catpro_Nome']?></p>
+                                </div>
+                            </div>
+                    <?php
+                        }else{
+                    ?>
+                        <div class="swiper-slide card">
+                            <div class="categoria_container" onclick="window.location.replace('./Index.php?cat=<?php echo $categoria['catpro_Id'] ?>')">
+                                <img class="categoria_img" src="<?php echo $categoria['catpro_Foto'] ?>" alt="">
+                                <p class="categoira_label"><?php echo $categoria['catpro_Nome']?></p>
+                            </div>
+                        </div>
+                <?php
+                        }
                     }
                 ?>
             </div>

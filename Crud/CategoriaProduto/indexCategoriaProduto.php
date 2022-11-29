@@ -5,7 +5,7 @@ $sqlCatProduto = "SELECT * FROM tb_categoriaproduto ORDER BY catpro_Nome";
 $listaCatProduto = selectRegistros($sqlCatProduto);
 $str_listaCatProduto = arrayToString($listaCatProduto);
 
-array_unshift($listaCatProduto, ["catpro_Id" => "", "catpro_Nome" => ""]);
+array_unshift($listaCatProduto, ["catpro_Id" => "", "catpro_Nome" => "", "catpro_Foto" => ""]);
 ?>
 
 <!DOCTYPE html>

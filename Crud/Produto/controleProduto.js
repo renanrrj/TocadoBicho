@@ -46,7 +46,7 @@ function preencherCampos(id){
         dadosArray.push(dado.split('§'))
     })
 
-    let reg_selecionado = dadosArray.find(it => it.includes(`pro_Id:'${id}'`))
+    let reg_selecionado = dadosArray.find(it => it.includes(`pro_Id¬'${id}'`))
 
     console.log(reg_selecionado)
 
@@ -54,7 +54,7 @@ function preencherCampos(id){
     pro_Preco.value = reg_selecionado.find(it => it.split('¬')[0] == 'pro_Preco').split('¬')[1].replaceAll("'","")
     pro_Id_Categoria.value = reg_selecionado.find(it => it.split('¬')[0] == 'pro_Id_Categoria').split('¬')[1].replaceAll("'","")
     pro_Detalhe.value = reg_selecionado.find(it => it.split('¬')[0] == 'pro_Detalhe').split('¬')[1].replaceAll("'","")
-    pro_Foto.src = reg_selecionado.find(it => it.split('¬')[0] == 'pro_Foto').split('¬')[1].replaceAll("'","")
+    pro_img.src = reg_selecionado.find(it => it.split('¬')[0] == 'pro_Foto').split('¬')[1].replaceAll("'","")
     pro_foto_txt2.value = reg_selecionado.find(it => it.split('¬')[0] == 'pro_Foto').split('¬')[1].replaceAll("'","")
 }
 
@@ -64,15 +64,18 @@ function onFileInputChange(file){
     let url = URL.createObjectURL(file)
 
     pro_img.src = url
-    document.getElementById('pro_Foto_txt').value = getBase64(file)
+    getBase64(file)
 }
 
 //Converte o arquivo em BASE64
 function getBase64(file) {
+    console.log(file)
+    result = ""
+
     var reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
-        return reader.result
+        document.getElementById('pro_Foto_txt').value = reader.result
     };
     reader.onerror = function (error) {
       console.log('Error: ', error);

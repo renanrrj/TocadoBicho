@@ -62,6 +62,6 @@ body{  /** corrigiu a margem colocou no canto superior esquerdo  */
     width: 350px;
     object-fit: contain;
 
-    border: 5px solid rgb(79, 226, 74);
+    border: 5px solid black;
     border-radius: 20px;
 }
